@@ -3,13 +3,15 @@ import os
 from pdf2docx import Converter
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+# Define the template folder location explicitly
+app = Flask(__name__, template_folder='.')  # Set root folder as template folder
+
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html')  # Flask will now search in the root folder
 
 @app.route('/convert', methods=['POST'])
 def convert():
