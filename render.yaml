@@ -3,7 +3,7 @@ services:
     name: pdf-to-word
     runtime: python
     buildCommand: ""
-    startCommand: "python app.py"
+    startCommand: "gunicorn --timeout 120 app:app"  # Timeout increase for heavy processing
     envVars:
       - key: FLASK_ENV
         value: production
